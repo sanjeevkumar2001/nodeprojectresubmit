@@ -8,13 +8,13 @@ import NotFound from "./Notfound";
 // product list displays the list of products available in our own api , that we created usiong mocji website
 
 function ProductList() {
-  const { data, err, loading } = useFetch('https://mocki.io/v1/e4027d83-f009-4d43-9537-e3626dfc7acd');
+  const { data, err, loading } = useFetch('http://localhost:5300/api/product');
   const [book, setBook] = useState([]);
   const[input,setinput] = useState("");
 
   useEffect(() => {
     if (data) {
-      setBook(data.products);
+      setBook(data);
     }
   }, [data]);
 

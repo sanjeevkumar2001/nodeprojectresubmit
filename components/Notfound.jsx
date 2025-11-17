@@ -1,23 +1,31 @@
 import { useRouteError } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./style.css";
-// not found is an error component, message is an props object that iss used in usefetch we pass the err as message in not found component
-function NotFound({message}){
-    const err = useRouteError();
-    
-    
-    return(
 
-        <>
-           <h1>OOPS!..</h1>
-            <h2>{message || err?.message || "Something went wrong."}</h2>
-           <h1>{err.data}</h1>
-           <h3>{err.status} {err.statusText}</h3>
-           <Link to="/">
-             <button className="errhome">Back to Home</button>
-           </Link>
+function NotFound({ message }) {
+  const err = useRouteError();
 
-        </>
-    )
+  const displayMessage =
+    typeof message === "string"
+      ? message
+      : message?.message || JSON.stringify(message) || err?.message || "Something went wrong.";
+
+  return (
+    <>
+      <h1>OOPS!..</h1>
+      <h2>{displayMessage}</h2>
+
+      {err?.status && (
+        <h4>
+          {err.status} {err.statusText}
+        </h4>
+      )}
+
+      <Link to="/">
+        <button className="errhome">Back to Home</button>
+      </Link>
+    </>
+  );
 }
+
 export default NotFound;

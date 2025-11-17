@@ -1,4 +1,6 @@
 // just to showcase the dummy data that is used and useing fetch we created our oiwn api and then we used in fetch api 
+
+const url = "https://mocki.io/v1/e4027d83-f009-4d43-9537-e3626dfc7acd";
 const products = [
   {
     id: 1,

@@ -1,16 +1,5 @@
-# React + Vite
+go to cd vite-project go to npm run dev, 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+there will be an link u can run the application first the header component then the hero component that will be like an corosel displayed for 1 second then the top rated products with rating >=4.5 then in the product component list of products, and an add to cart button that will add product to cart u can also filter the product list in the cart component u can clear product, then in the checkout page u can place order that will be dispalyed as an alert message.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+the git hub link which contains the project is https://github.com/sanjeevkumar2001/reactproject.git

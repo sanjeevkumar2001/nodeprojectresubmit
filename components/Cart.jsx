@@ -1,20 +1,37 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, clearCart } from "../utils/cartSlice";
 import "./style.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
-// displays the list of cart items 
 function Cart() {
   const cartItems = useSelector((store) => store.cart.items);
-   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
-   const dispatch = useDispatch();
-   const handleClear = () => dispatch(clearCart());
-    
- 
-  
+  const dispatch = useDispatch();
 
-  
+  // Total price considering quantity
+    const total = cartItems.reduce(
+    (sum, item) => sum + item.price * (item.quantity || 1),
+    0
+  );
+
+  // Clear cart both in Redux and backend
+  const handleClear = async () => {
+    try {
+      const response = await fetch("http://localhost:5300/api/cart", {
+        method: "DELETE",
+      });
+      const result = await response.json();
+      if (result.success) {
+        dispatch(clearCart());
+        alert("🗑️ Cart cleared successfully!");
+      } else {
+        alert(result.message || "Failed to clear cart");
+      }
+    } catch (error) {
+      console.error("Error clearing cart:", error);
+      alert("❌ Failed to clear cart!");
+    }
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -35,21 +52,19 @@ function Cart() {
 
       <div className="cart-grid">
         {cartItems.map((item, index) => (
-          
-        <CartItem key={index}data={item} index={index}></CartItem>
+          <CartItem key={index} data={item} index={index} />
         ))}
       </div>
-         <div className="cart-summary">
+
+      <div className="cart-summary">
         <h2>Total: ₹{total}</h2>
         <button className="cart-clear" onClick={handleClear}>
           Clear Cart
         </button>
-         <Link to="/checkout">
+        <Link to="/checkout">
           <button className="checkout-btn">Proceed to Checkout</button>
         </Link>
       </div>
-
-      
     </div>
   );
 }

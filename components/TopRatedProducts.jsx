@@ -8,12 +8,16 @@ import NotFound from "./Notfound";
 // Top rated products with more rating greater than or equal to  4.5, and we created the api using mockio website and we 
 // created our own api and using useFetch we fetch the data from api .
 function TopRatedProducts() {
-  const { data, err, loading } = useFetch('https://mocki.io/v1/e4027d83-f009-4d43-9537-e3626dfc7acd');
+
+ 
+
+
+  const { data, err, loading } = useFetch('http://localhost:5300/api/product');
   const [book, setBook] = useState([]);
 
   useEffect(() => {
     if (data) {
-      setBook(data.products);
+      setBook(data);
     }
   }, [data]);
 
@@ -30,7 +34,7 @@ function TopRatedProducts() {
     .map(product => (
       
       
-      <div className="product-card">
+      <div key={product.id} className="product-card">
         <Link to={`/products/${product.id}`}>
          <img src={product.image} alt={product.name} />
         <h1>{product.name}</h1>
